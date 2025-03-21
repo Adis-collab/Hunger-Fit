@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "app.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "app.py"
+      }
+    ],
+    "env": {
+      "AWS_COGNITO_USER_POOL_ID": "ap-south-1_X6QiXtw8N",
+      "AWS_COGNITO_CLIENT_ID": "c9dq2b6s999kd2dg4kd16coh5"
+      
+    }
+  }
