@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HungerFit</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1 class="header-title">HungerFit😋</h1>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+            <label for="file" class="file-label">Choose an Image</label>
+            <input type="file" name="image" id="file" class="file-input" required onchange="previewImage(event)">
+            <button type="submit" class="btn">Upload and Process</button>
+        </form>
+
+        <!-- Display the uploaded image -->
+        <div id="uploaded-image-container" class="image-display" style="display: none;">
+            <h3>Uploaded Image:</h3>
+            <img id="uploaded-image" src="" alt="Uploaded Image" style="max-width: 500px;">
+        </div>
+
+        <!-- Display the processed image -->
+        {% if processed_image %}
+        <div id="processed-image-container" class="image-display">
+            <h3>Processed Image:</h3>
+            <img id="processed-image" src="{{ processed_image }}" alt="Processed Image" style="max-width: 500px;">
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Right container with nutritional info -->
+<!-- Right container with nutritional info -->
+<div class="container right-container" id="right-container" style="display: block;">
+    {% if item_info and item_info|length > 0 %}
+    <div class="food-info-container">
+        <h3 style="font-size: 1.3rem; font-family: 'Lexend', sans-serif;">Detected Food Items and Nutritional Info:</h3>
+        
+            {% for item in item_info %}
+                <li>
+                    <strong>{{ item.item }}</strong><br>
+                    <div class="nutrition-info">
+                        
+                        Calories: {{ item.calories }} kcal<br>
+                        Protein: {{ item.protein }} g<br>
+                        Fat: {{ item.fat }} g<br>
+                        Carbs: {{ item.carbs }} g<br><br>
+                    </div>
+                </li>
+            {% endfor %}
+        
+    </div>
+    {% else %}
+    <p>No food items detected or nutritional information available.</p>
+    {% endif %}
+</div>
+
+
+    <!-- Logout button at the bottom of the page -->
+    <div class="logout-container">
+        <a href="/logout">Logout</a>
+    </div>
+
+    <!-- JavaScript to preview the uploaded image and handle switching images -->
+    <script>
+       // JavaScript to preview the uploaded image and handle switching images
+// JavaScript to preview the uploaded image and handle switching images
+function previewImage(event) {
+    const processedImageContainer = document.getElementById('processed-image-container');
+    const rightContainer = document.getElementById('right-container');
+    const uploadedImageContainer = document.getElementById('uploaded-image-container');
+    const uploadedImage = document.getElementById('uploaded-image');
+    const file = event.target.files[0];
+
+    // Reset previous state
+    if (processedImageContainer) processedImageContainer.style.display = 'none';
+    if (rightContainer) rightContainer.style.display = 'none';
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            uploadedImage.src = e.target.result;
+            uploadedImageContainer.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function displayProcessedImage(processedImagePath, itemInfo) {
+    const processedImageContainer = document.getElementById('processed-image-container');
+    const rightContainer = document.getElementById('right-container');
+
+    // Update processed image
+    if (processedImageContainer) {
+        const processedImage = document.getElementById('processed-image');
+        processedImage.src = processedImagePath;
+        processedImageContainer.style.display = 'block';
+    }
+
+    // Update and show right container based on itemInfo
+    if (rightContainer) {
+        if (itemInfo && itemInfo.length > 0) {
+            rightContainer.style.display = 'block'; // Show if data exists
+        } else {
+            rightContainer.style.display = 'none'; // Hide if no data
+        }
+    }
+}
+
+    </script>
+</body>
+</html>

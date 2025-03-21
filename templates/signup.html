@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="static/LSCS.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Sign Up</h1>
+        <p>Create your account to get started.</p>
+        
+        <form action="{{ url_for('signup') }}" method="POST" onsubmit="return validateForm(event)">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <label for="given_name">First Name</label>
+            <input type="text" id="given_name" name="given_name" placeholder="Enter your first name" required>
+
+            <label for="family_name">Last Name</label>
+            <input type="text" id="family_name" name="family_name" placeholder="Enter your last name" required>
+
+            <label for="phone_number">Phone Number</label>
+            <input type="tel" id="phone_number" name="phone_number" placeholder="+123456789012" required 
+                   pattern="^\+\d{11,14}$" title="Phone number must be in the format +123456789012.">
+
+            <label for="birthdate">Birthdate</label>
+            <input type="date" id="birthdate" name="birthdate" max="{{ max_date }}" required
+                   title="Birthdate must be in YYYY-MM-DD format.">
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm(event) {
+            const phoneNumber = document.getElementById('phone_number').value;
+            const phonePattern = /^\+\d{11,14}$/;
+            if (!phonePattern.test(phoneNumber)) {
+                alert("Phone number must be in the format +123456789012.");
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
