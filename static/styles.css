@@ -1,0 +1,288 @@
+/* General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff2323, #fccd25);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header Styling */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the title */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px; /* Added horizontal padding for spacing */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.header-title {
+    font-family: 'Lexend', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f7f7f7;
+    letter-spacing: 1.5px;
+    margin: 0;
+    
+}
+
+.header-user {
+    position: absolute; /* Positions the user section independently */
+    left: 20px; /* Moves it to the left side */
+    font-family: 'Fasthelly', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f7f7f7;
+    padding-left: 20px
+}
+
+
+.profile-container {
+    position: absolute;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Makes the image fully circular */
+    border: 2px solid #fff; /* White border around the image */
+    object-fit: cover; /* Ensures the image scales properly within the circle */
+    background-color: #ffffff; /* Default background color */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* For default profile picture fallback */
+.profile-pic[src=""], 
+.profile-pic:not([src]) {
+    background-image: url('static/default-profile.png'); /* Fallback default image */
+    background-size: cover; /* Ensure the fallback image fills the circle */
+    background-position: center; /* Center the fallback image */
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.profile-pic-input {
+    display: none; /* Hide the file input */
+}
+
+
+/* Main Content */
+.container {
+    margin-top: 80px; /* Adjust for header height */
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Align text to the left */
+    color: #fff;
+    position: absolute; /* Position the container absolutely */
+    left: 0; /* Move the container to the leftmost of the page */
+    margin-left: 110px;
+    margin-top: 120px; /* Add a small margin from the left */
+}
+
+/* Styling for the right-side container */
+.container.right-container {
+    left: auto; /* Override the left positioning */
+    right: 110px; /* Position the container to the right */
+    margin-left: 0;
+    width: 31rem; /* Remove the left margin */
+}
+
+/* Align food items and nutritional info to the left */
+/* Align food items and nutritional info to the left */
+.food-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align the content to the left */
+    padding-left: 20px; /* Optional padding */
+    margin-top: 20px; /* Add some margin on top to separate the text from the image */
+}
+
+.food-info-container ul {
+    list-style-type: none; /* Remove bullets */
+    padding-left: 0; /* Remove default padding */
+    margin: 0; /* Remove margin for the list */
+}
+
+.food-info-container li {
+    margin-bottom: 10px; /* Add space between each item */
+    font-size: 16px;
+    text-align: left; /* Align the text to the left */
+}
+
+.food-info-container strong {
+    font-weight: bold; /* Make the food item names bold */
+}
+
+/* Add numbers to food items using CSS counter */
+.food-info-container ol {
+    counter-reset: food-item; /* Reset the counter */
+    margin: 0; /* Remove margin */
+    padding-left: 20px; /* Space from left */
+}
+
+.food-info-container ol li {
+    counter-increment: food-item; /* Increment the counter for each list item */
+    position: relative;
+}
+
+.food-info-container ol li::before {
+    content: counter(food-item) ". "; /* Display the counter number */
+    position: absolute;
+    left: -30px; /* Adjust this value for correct alignment */
+    font-weight: bold;
+}
+
+/* Nutritional info aligned to the left */
+.nutrition-info {
+    margin-left: 20px; /* Indent nutritional info for better readability */
+    font-size: 14px; /* Slightly smaller font size for nutritional info */
+    text-align: left; /* Align the nutritional text to the left */
+}
+
+
+
+/* Form */
+.upload-form {
+    margin: 20px 0;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 15px 25px;
+    margin: 10px 0;
+    background: #ffffff;
+    color: #2575fc;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid #2575fc;
+    transition: all 0.3s ease;
+}
+
+.file-label:hover {
+    background: #2575fc;
+    color: #ffffff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.file-input {
+    display: none;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: #6a11cb;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #2575fc;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Logout Button */
+/* Logout Button */
+.logout-container {
+    position: fixed; /* Fix the button to always stay at the bottom */
+    bottom: 20px; /* Add some margin from the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
+    text-align: center; /* Center align the text inside */
+}
+
+.logout-container a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.logout-container a:hover {
+    background: #ffffff;
+    color: #2575fc;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .header-title {
+        font-size: 1.8rem;
+    }
+
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}
+
+.welcome-message {
+    position: fixed;
+    top: 200px; /* Below the header */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.5rem;
+    opacity: 0; /* Initially hidden */
+    animation: fadeInOut 5s ease-in-out forwards; /* Smooth fade-in and fade-out */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0; /* Fully hidden */
+    }
+    10% {
+        opacity: 1; /* Fully visible */
+    }
+    90% {
+        opacity: 1; /* Stay visible for a while */
+    }
+    100% {
+        opacity: 0; /* Fully hidden again */
+    }
+}
+
+
